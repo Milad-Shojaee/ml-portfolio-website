@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+nav {
+    background: #111827;
+    color: white;
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #60a5fa;
+}
+
+.hero {
+    background: linear-gradient(135deg, #111827, #1d4ed8);
+    color: white;
+    text-align: center;
+    padding: 100px 30px;
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 750px;
+    margin: 0 auto 35px;
+    line-height: 1.6;
+}
+
+.button {
+    background: white;
+    color: #1d4ed8;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+}
+
+section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+section p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: #f9fafb;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+}
+
+.card h3 {
+    color: #1d4ed8;
+}
+
+.card span {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #4b5563;
+    font-weight: bold;
+}
+
+.demo-box {
+    background: #eef2ff;
+    border-left: 5px solid #1d4ed8;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #111827;
+    color: white;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #1d4ed8;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+ul {
+    font-size: 18px;
+    line-height: 1.8;
+}

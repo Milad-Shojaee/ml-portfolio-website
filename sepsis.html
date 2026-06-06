@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ICU Sepsis Prediction | Milad Shojaee</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <h2>Milad Shojaee</h2>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section>
+        <h1>ICU Sepsis Prediction</h1>
+
+        <p>
+            This project develops a machine learning pipeline for predicting sepsis risk
+            6 hours before clinical onset using ICU time-series data.
+        </p>
+
+        <h2>Problem</h2>
+        <p>
+            Sepsis is a life-threatening condition where early detection is critical.
+            The goal is to use patient measurements such as heart rate, temperature,
+            blood pressure, oxygen saturation, and lab values to predict whether a patient
+            is at risk of developing sepsis within the next 6 hours.
+        </p>
+
+        <h2>Dataset</h2>
+        <p>
+            I used ICU patient data from PhysioNet, containing multivariate clinical
+            time-series measurements collected during hospital stays.
+        </p>
+
+        <h2>Method</h2>
+        <ul>
+            <li>Cleaned missing clinical measurements</li>
+            <li>Engineered temporal features from rolling windows</li>
+            <li>Created a 6-hour prediction horizon</li>
+            <li>Trained baseline logistic regression and XGBoost models</li>
+            <li>Evaluated performance using ROC-AUC, PR-AUC, and F1-score</li>
+        </ul>
+
+        <h2>Results</h2>
+        <p>
+            The tuned XGBoost model achieved strong predictive performance, with
+            ROC-AUC around 0.89 and PR-AUC around 0.48, outperforming the baseline model.
+        </p>
+
+        <h2>Tools</h2>
+        <p>
+            Python, Pandas, NumPy, Scikit-learn, XGBoost, Matplotlib, PhysioNet
+        </p>
+
+        <h2>Future Deployment</h2>
+        <p>
+            This model could be deployed as a clinical dashboard where doctors enter
+            or stream patient measurements and receive an early warning risk score.
+        </p>
+
+        <a class="button" href="index.html">Back to Portfolio</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Milad Shojaee. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
