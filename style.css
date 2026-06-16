@@ -77,7 +77,7 @@ section p {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
 }
 
@@ -92,9 +92,10 @@ section p {
     color: #1d4ed8;
 }
 
-.card span {
+.card span,
+.demo-box span {
     display: block;
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 14px;
     color: #4b5563;
     font-weight: bold;
@@ -130,4 +131,30 @@ footer {
 ul {
     font-size: 18px;
     line-height: 1.8;
+}
+
+@media (max-width: 800px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    nav a {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        margin: 30px 15px;
+        padding: 25px;
+    }
 }
