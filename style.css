@@ -61,6 +61,13 @@ nav a:hover {
     font-weight: bold;
 }
 
+.project-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
 .hero-buttons {
     margin-top: 30px;
 }
