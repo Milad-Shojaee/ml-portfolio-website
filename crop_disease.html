@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Disease Diagnosis | Milad Shojaee</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,81 +19,115 @@
     </div>
 </nav>
 
-<section>
-    <h2>Crop Disease Diagnosis Platform</h2>
+<section class="project-page">
 
-    <p>
-        This project is an end-to-end computer vision system for crop disease diagnosis.
-        The system classifies plant leaf images into 15 disease and healthy classes using
-        deep learning models trained on the PlantVillage dataset.
-    </p>
+    <div class="project-hero">
+        <h1>Crop Disease Diagnosis Platform</h1>
+        <p class="subtitle">
+            An end-to-end deep learning system for diagnosing crop diseases from plant leaf images using
+            ResNet-18, Vision Transformer, PyTorch, Streamlit, and Hugging Face deployment.
+        </p>
 
-    <h3>Project Overview</h3>
-    <ul>
-        <li>Dataset: PlantVillage</li>
-        <li>Total images: 20,638</li>
-        <li>Number of classes: 15</li>
-        <li>Supported plants: Tomato, Potato, and Pepper</li>
-        <li>Task: Multi-class image classification</li>
-    </ul>
+        <div class="hero-buttons">
+            <a class="project-link" href="https://crop-disease-app-v5dwwtkhdnk8gwjt7ysmcv.streamlit.app" target="_blank">
+                Open Live Demo
+            </a>
+            <a class="project-link secondary" href="index.html">
+                Back to Portfolio
+            </a>
+        </div>
+    </div>
 
-    <h3>Methods</h3>
-    <p>
-        I developed and compared two deep learning models: a CNN-based ResNet-18 model
-        and a transformer-based Vision Transformer (ViT-B/16). Both models were initialized
-        with pretrained weights and adapted to the 15-class crop disease classification task.
-    </p>
+    <div class="project-card">
+        <h2>Project Overview</h2>
+        <p>
+            This project is a computer vision platform that classifies plant leaf images into
+            15 disease and healthy classes using models trained on the PlantVillage dataset.
+            The goal was to build not only a high-performing model, but also a complete ML workflow
+            from training and evaluation to public deployment.
+        </p>
 
-    <ul>
-        <li>Applied image resizing and tensor preprocessing for model input.</li>
-        <li>Used transfer learning by replacing the original ImageNet classification heads.</li>
-        <li>Fine-tuned deeper model layers to adapt pretrained features to crop disease patterns.</li>
-        <li>Evaluated performance using accuracy, precision, recall, F1-score, and confusion matrices.</li>
-    </ul>
+        <div class="info-grid">
+            <div><strong>Dataset</strong><br>PlantVillage</div>
+            <div><strong>Total Images</strong><br>20,638</div>
+            <div><strong>Classes</strong><br>15</div>
+            <div><strong>Plants</strong><br>Tomato, Potato, Pepper</div>
+            <div><strong>Task</strong><br>Multi-class Classification</div>
+            <div><strong>Framework</strong><br>PyTorch</div>
+        </div>
+    </div>
 
-    <h3>Results</h3>
-    <ul>
-        <li>ResNet-18 test accuracy: 98.2%</li>
-        <li>ViT-B/16 test accuracy: 97.2%</li>
-        <li>ResNet-18 achieved the strongest overall performance.</li>
-        <li>ViT-B/16 provided a useful transformer-based comparison model.</li>
-    </ul>
+    <div class="project-card">
+        <h2>Methods</h2>
+        <p>
+            I developed and compared a CNN-based ResNet-18 model and a transformer-based
+            Vision Transformer model. Both models used pretrained weights and were adapted
+            for the 15-class crop disease diagnosis task.
+        </p>
 
-    <h3>Deployment</h3>
-    <p>
-        The trained models were deployed through an interactive Streamlit web application.
-        Users can upload a leaf image and compare predictions from both models, including
-        predicted plant type, disease class, confidence scores, and top-3 predictions.
-    </p>
+        <ul>
+            <li>Resized and preprocessed leaf images for model input.</li>
+            <li>Used transfer learning by replacing ImageNet classification heads.</li>
+            <li>Fine-tuned pretrained model layers for crop disease-specific features.</li>
+            <li>Compared CNN and transformer-based architectures.</li>
+            <li>Evaluated models using accuracy, precision, recall, F1-score, and confusion matrices.</li>
+        </ul>
+    </div>
 
-    <ul>
-        <li>Frontend demo: Streamlit</li>
-        <li>Model hosting: Hugging Face</li>
-        <li>Website integration: GitHub Pages portfolio</li>
-    </ul>
+    <div class="project-card">
+        <h2>Results</h2>
 
-    <h3>Key Skills Demonstrated</h3>
-    <ul>
-        <li>Computer vision</li>
-        <li>Transfer learning</li>
-        <li>Vision Transformers</li>
-        <li>PyTorch model training</li>
-        <li>Model evaluation and error analysis</li>
-        <li>Streamlit deployment</li>
-        <li>Hugging Face model hosting</li>
-    </ul>
+        <div class="results-grid">
+            <div class="result-box">
+                <h3>98.2%</h3>
+                <p>ResNet-18 Test Accuracy</p>
+            </div>
 
-    <p>
-        <a class="project-link" href="https://crop-disease-app-v5dwwtkhdnk8gwjt7ysmcv.streamlit.app" target="_blank">
-            Open Live Demo
-        </a>
-    </p>
+            <div class="result-box">
+                <h3>97.2%</h3>
+                <p>ViT-B/16 Test Accuracy</p>
+            </div>
+        </div>
 
-    <p>
-        <a class="project-link" href="index.html">
-            Back to Portfolio
-        </a>
-    </p>
+        <p>
+            ResNet-18 achieved the strongest overall performance, while ViT-B/16 provided
+            a useful transformer-based comparison. The results show that transfer learning
+            can be highly effective for plant disease classification when combined with careful
+            evaluation and deployment.
+        </p>
+    </div>
+
+    <div class="project-card">
+        <h2>Deployment</h2>
+        <p>
+            The trained models were deployed through an interactive Streamlit web application.
+            Users can upload a leaf image and view the predicted plant type, disease class,
+            confidence score, and top predictions.
+        </p>
+
+        <ul>
+            <li><strong>Frontend:</strong> Streamlit</li>
+            <li><strong>Model hosting:</strong> Hugging Face</li>
+            <li><strong>Website integration:</strong> GitHub Pages portfolio</li>
+        </ul>
+    </div>
+
+    <div class="project-card">
+        <h2>Key Skills Demonstrated</h2>
+
+        <div class="skills-grid">
+            <span>Computer Vision</span>
+            <span>Transfer Learning</span>
+            <span>Vision Transformers</span>
+            <span>PyTorch</span>
+            <span>Model Evaluation</span>
+            <span>Error Analysis</span>
+            <span>Streamlit</span>
+            <span>Hugging Face</span>
+            <span>GitHub Pages</span>
+        </div>
+    </div>
+
 </section>
 
 <footer>
