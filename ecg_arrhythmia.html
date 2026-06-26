@@ -10,7 +10,7 @@
 <body>
   <header>
     <h1>ECG Arrhythmia Detection</h1>
-    <p>Patient-independent abnormal heartbeat detection using ECG morphology and RR interval dynamics</p>
+    <p>Patient-independent abnormal heartbeat detection using ECG morphology, RR interval dynamics, and targeted augmentation</p>
   </header>
 
   <main class="project-page">
@@ -18,14 +18,15 @@
     <section>
       <h2>Project Overview</h2>
       <p>
-        This project develops a deep learning system for ECG arrhythmia detection using the
-        MIT-BIH Arrhythmia Database. The model combines heartbeat morphology from ECG waveforms
-        with RR interval timing features to classify heartbeats as normal or abnormal.
+        This project develops a deep learning system for patient-independent ECG abnormal heartbeat
+        detection using the MIT-BIH Arrhythmia Database. The model combines heartbeat morphology
+        from ECG waveforms with RR interval timing features to classify heartbeats as normal or abnormal.
       </p>
 
       <p>
-        Unlike a simple random beat split, this project uses a patient-independent DS1/DS2-style
-        evaluation protocol, where the model is tested on ECG records from unseen patients.
+        Unlike a random beat-level split, this project uses a DS1/DS2-style inter-patient evaluation
+        protocol, where the model is trained and tested on ECG records from different patients. This
+        provides a more realistic assessment of generalization to unseen subjects.
       </p>
     </section>
 
@@ -33,8 +34,13 @@
       <h2>Motivation</h2>
       <p>
         Arrhythmia detection is not only a waveform classification problem. Beat timing and rhythm
-        dynamics are also important. This project investigates how ECG morphology and RR intervals
-        complement each other for abnormal heartbeat detection.
+        dynamics are also important. This project systematically investigates how ECG morphology
+        and RR interval features complement each other for abnormal heartbeat detection.
+      </p>
+
+      <p>
+        The project also explores the effect of class imbalance and targeted minority-class augmentation
+        for improving abnormal beat detection under patient-independent evaluation.
       </p>
     </section>
 
@@ -42,10 +48,13 @@
       <h2>Methods</h2>
       <ul>
         <li>Dataset: MIT-BIH Arrhythmia Database</li>
-        <li>Input 1: ECG beat window centered around annotated beat locations</li>
+        <li>Task: Binary heartbeat classification: normal vs. abnormal</li>
+        <li>Input 1: ECG beat window centered around annotated heartbeat locations</li>
         <li>Input 2: RR interval features: previous RR and next RR intervals</li>
         <li>Model: Multi-input neural network with a 1D CNN ECG branch and dense RR branch</li>
         <li>Evaluation: Patient-independent DS1/DS2 split</li>
+        <li>Robustness strategy: Minority-class ECG augmentation applied only during training</li>
+        <li>Reporting: Mean and standard deviation over five random seeds</li>
       </ul>
     </section>
 
@@ -53,15 +62,15 @@
       <h2>Model Architecture</h2>
       <p>
         The ECG branch learns beat morphology using one-dimensional convolutional layers.
-        The RR branch learns timing information from neighboring beat intervals.
-        The extracted ECG and RR features are concatenated and passed to a final classifier.
+        The RR branch learns rhythm information from neighboring beat intervals.
+        The ECG and RR representations are concatenated and passed to a final classifier.
       </p>
 
       <pre>
-ECG beat window  ──► 1D CNN ──► ECG features
-RR intervals     ──► Dense NN ─► RR features
+ECG beat window  ──► 1D CNN ──► ECG morphology features
+RR intervals     ──► Dense NN ─► Rhythm timing features
 
-ECG features + RR features ──► Classifier ──► Normal / Abnormal
+ECG features + RR features ──► Fusion classifier ──► Normal / Abnormal
       </pre>
     </section>
 
@@ -72,41 +81,67 @@ ECG features + RR features ──► Classifier ──► Normal / Abnormal
         <thead>
           <tr>
             <th>Model</th>
-            <th>Test Accuracy</th>
-            <th>Test ROC-AUC</th>
+            <th>Accuracy</th>
+            <th>ROC-AUC</th>
+            <th>F1-score</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>ECG morphology only</td>
-            <td>84.2%</td>
-            <td>0.817</td>
+            <td>91.94 ± 2.20%</td>
+            <td>0.902 ± 0.014</td>
+            <td>0.617 ± 0.049</td>
           </tr>
           <tr>
             <td>RR intervals only</td>
-            <td>93.3%</td>
-            <td>0.832</td>
+            <td>92.87 ± 0.78%</td>
+            <td>0.818 ± 0.020</td>
+            <td>0.647 ± 0.008</td>
           </tr>
           <tr>
-            <td><strong>ECG + RR intervals</strong></td>
-            <td><strong>94.8%</strong></td>
-            <td><strong>0.957</strong></td>
+            <td>ECG + RR intervals</td>
+            <td>94.61 ± 0.52%</td>
+            <td>0.965 ± 0.004</td>
+            <td>0.742 ± 0.017</td>
+          </tr>
+          <tr>
+            <td><strong>ECG + RR + Augmentation</strong></td>
+            <td><strong>95.39 ± 0.60%</strong></td>
+            <td><strong>0.968 ± 0.007</strong></td>
+            <td><strong>0.772 ± 0.024</strong></td>
           </tr>
         </tbody>
       </table>
 
       <p>
-        The fused ECG + RR model substantially outperformed both ECG-only and RR-only baselines,
-        showing that heartbeat morphology and rhythm timing provide complementary information.
+        The fused ECG + RR model outperformed both morphology-only and rhythm-only baselines,
+        demonstrating that heartbeat morphology and rhythm timing provide complementary information.
+        Targeted augmentation of abnormal beats further improved average accuracy, ROC-AUC, and F1-score.
+      </p>
+    </section>
+
+    <section>
+      <h2>Ablation Study</h2>
+      <p>
+        Several training strategies were compared to understand the effect of feature fusion and
+        imbalance handling. Weighted binary cross-entropy improved abnormal-beat recall but increased
+        false positives and reduced overall performance. Naive oversampling showed signs of overfitting,
+        while targeted ECG augmentation improved the effective diversity of the minority class.
       </p>
     </section>
 
     <section>
       <h2>Clinical and Technical Relevance</h2>
       <p>
-        This work demonstrates a near-real-time abnormal beat detection pipeline. In a real streaming
-        system, incoming ECG data would be processed through R-peak detection, beat extraction,
-        RR interval calculation, and model inference to flag normal or abnormal beats.
+        This work demonstrates a near-real-time abnormal beat detection pipeline. In a streaming ECG
+        system, incoming data could be processed through R-peak detection, beat extraction, RR interval
+        calculation, and model inference to flag normal or abnormal beats.
+      </p>
+
+      <p>
+        Because the model uses both ECG morphology and rhythm timing, it is better suited for abnormal
+        beat screening than a morphology-only classifier.
       </p>
     </section>
 
@@ -118,7 +153,9 @@ ECG features + RR features ──► Classifier ──► Normal / Abnormal
         <li>1D convolutional neural networks</li>
         <li>RR interval feature engineering</li>
         <li>Patient-independent model evaluation</li>
-        <li>Medical AI model interpretation and deployment planning</li>
+        <li>Class imbalance analysis and targeted data augmentation</li>
+        <li>Medical AI model evaluation using accuracy, ROC-AUC, F1-score, and confusion matrices</li>
+        <li>Deployment planning for Streamlit-based ECG demos</li>
       </ul>
     </section>
 
