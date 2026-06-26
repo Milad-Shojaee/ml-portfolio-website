@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECG Arrhythmia Detection | Milad Shojaee</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>ECG Arrhythmia Detection</h1>
+    <p>Patient-independent abnormal heartbeat detection using ECG morphology and RR interval dynamics</p>
+  </header>
+
+  <main class="project-page">
+
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        This project develops a deep learning system for ECG arrhythmia detection using the
+        MIT-BIH Arrhythmia Database. The model combines heartbeat morphology from ECG waveforms
+        with RR interval timing features to classify heartbeats as normal or abnormal.
+      </p>
+
+      <p>
+        Unlike a simple random beat split, this project uses a patient-independent DS1/DS2-style
+        evaluation protocol, where the model is tested on ECG records from unseen patients.
+      </p>
+    </section>
+
+    <section>
+      <h2>Motivation</h2>
+      <p>
+        Arrhythmia detection is not only a waveform classification problem. Beat timing and rhythm
+        dynamics are also important. This project investigates how ECG morphology and RR intervals
+        complement each other for abnormal heartbeat detection.
+      </p>
+    </section>
+
+    <section>
+      <h2>Methods</h2>
+      <ul>
+        <li>Dataset: MIT-BIH Arrhythmia Database</li>
+        <li>Input 1: ECG beat window centered around annotated beat locations</li>
+        <li>Input 2: RR interval features: previous RR and next RR intervals</li>
+        <li>Model: Multi-input neural network with a 1D CNN ECG branch and dense RR branch</li>
+        <li>Evaluation: Patient-independent DS1/DS2 split</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Model Architecture</h2>
+      <p>
+        The ECG branch learns beat morphology using one-dimensional convolutional layers.
+        The RR branch learns timing information from neighboring beat intervals.
+        The extracted ECG and RR features are concatenated and passed to a final classifier.
+      </p>
+
+      <pre>
+ECG beat window  ──► 1D CNN ──► ECG features
+RR intervals     ──► Dense NN ─► RR features
+
+ECG features + RR features ──► Classifier ──► Normal / Abnormal
+      </pre>
+    </section>
+
+    <section>
+      <h2>Key Results</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Test Accuracy</th>
+            <th>Test ROC-AUC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ECG morphology only</td>
+            <td>84.2%</td>
+            <td>0.817</td>
+          </tr>
+          <tr>
+            <td>RR intervals only</td>
+            <td>93.3%</td>
+            <td>0.832</td>
+          </tr>
+          <tr>
+            <td><strong>ECG + RR intervals</strong></td>
+            <td><strong>94.8%</strong></td>
+            <td><strong>0.957</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        The fused ECG + RR model substantially outperformed both ECG-only and RR-only baselines,
+        showing that heartbeat morphology and rhythm timing provide complementary information.
+      </p>
+    </section>
+
+    <section>
+      <h2>Clinical and Technical Relevance</h2>
+      <p>
+        This work demonstrates a near-real-time abnormal beat detection pipeline. In a real streaming
+        system, incoming ECG data would be processed through R-peak detection, beat extraction,
+        RR interval calculation, and model inference to flag normal or abnormal beats.
+      </p>
+    </section>
+
+    <section>
+      <h2>Tools and Skills</h2>
+      <ul>
+        <li>Python, PyTorch, NumPy, scikit-learn</li>
+        <li>WFDB and PhysioNet ECG data processing</li>
+        <li>1D convolutional neural networks</li>
+        <li>RR interval feature engineering</li>
+        <li>Patient-independent model evaluation</li>
+        <li>Medical AI model interpretation and deployment planning</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Live Demo</h2>
+      <p>
+        A Streamlit demo will allow users to upload or view ECG signals, extract heartbeat features,
+        and classify beats as normal or abnormal.
+      </p>
+
+      <a class="button" href="#" target="_blank">Live Demo Coming Soon</a>
+    </section>
+
+    <section>
+      <h2>Project Links</h2>
+      <p>
+        <a href="index.html">← Back to Portfolio</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Milad Shojaee</p>
+  </footer>
+</body>
+</html>
